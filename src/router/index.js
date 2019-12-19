@@ -54,7 +54,16 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
+  // {
+  //   path: '/exam',
+  //   component: Layout,
+  //   children: [{
+  //     path: 'index',
+  //     component: () => import('@/views/exam/index'),
+  //     name: 'Exam',
+  //     meta: { title: 'exam', icon: 'dashboard' }
+  //   }]
+  // },
   {
     path: '/example',
     component: Layout,
@@ -80,12 +89,21 @@ export const constantRoutes = [
   {
     path: '/form',
     component: Layout,
+    redirect: '/form/add',
+    name:'Form',
+    meta: { title: '考试管理', icon: 'form' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'add',
+        name: 'Add',
+        component: () => import('@/views/form/add'),
+        meta: { title: '添加考试', icon: 'add' }
+      },
+      {
+        path: 'test',
+        name: 'Test',
+        component: () => import('@/views/form/test'),
+        meta: { title: '试卷列表', icon: 'test' }
       }
     ]
   },
