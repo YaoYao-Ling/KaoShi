@@ -1,14 +1,14 @@
 
 <template>
   <!-- eslint-disable vue/require-component-is -->
-  <component v-bind="linkProps(to)">
-    <slot />
-  </component>
+      <div v-bind="linkProps(to)">
+         <slot />
+      </div>
+  
 </template>
 
 <script>
 import { isExternal } from '@/utils/validate'
-
 export default {
   props: {
     to: {

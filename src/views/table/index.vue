@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-table
+    <!-- <el-table
       v-loading="listLoading"
       :data="list"
       element-loading-text="Loading"
@@ -39,7 +39,7 @@
           <span>{{ scope.row.display_time }}</span>
         </template>
       </el-table-column>
-    </el-table>
+    </el-table> -->
   </div>
 </template>
 
