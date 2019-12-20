@@ -48,13 +48,13 @@ export const constantRoutes = [{
         path: '/',
         component: Layout,
         redirect: '/dashboard',
-        // children: [{
-        //     path: 'dashboard',
-        //     name: 'Dashboard',
-        //     component: () =>
-        //         import ('@/views/dashboard/index'),
-        //     meta: { title: 'Dashboard', icon: 'dashboard' }
-        // }]
+        children: [{
+            path: 'dashboard',
+            name: 'Dashboard',
+            component: () =>
+                import ('@/views/dashboard/index'),
+            meta: { title: '考试管理', icon: 'dashboard' }
+        }]
     },
 
     {
@@ -118,7 +118,7 @@ export const constantRoutes = [{
             {
                 path: 'menu3',
                 component: () =>
-                    import ('@/views/nested/menu2/index'),
+                    import ('@/views/nested/menu3/index'),
                 meta: { title: '学生管理' }
             }
         ]
