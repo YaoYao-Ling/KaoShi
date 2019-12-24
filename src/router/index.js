@@ -54,16 +54,6 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-  // {
-  //   path: '/exam',
-  //   component: Layout,
-  //   children: [{
-  //     path: 'index',
-  //     component: () => import('@/views/exam/index'),
-  //     name: 'Exam',
-  //     meta: { title: 'exam', icon: 'dashboard' }
-  //   }]
-  // },
   {
     path: '/example',
     component: Layout,
@@ -104,10 +94,22 @@ export const constantRoutes = [
         name: 'Test',
         component: () => import('@/views/form/test'),
         meta: { title: '试卷列表', icon: 'test' }
-      }
+      },
+      {
+        path: 'added',
+        name: 'Added',
+        component: () => import('@/views/form/added')
+      },
+      {
+        path: '/detail',
+        name: 'Detail',
+        component: () => import('@/views/form/detail')
+      },
+    
+      
     ]
   },
-
+  
   {
     path: '/nested',
     component: Layout,
