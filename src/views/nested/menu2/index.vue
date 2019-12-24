@@ -16,7 +16,7 @@
     <!-- ---------------------------------------------------------------------------------- -->
     <template>
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column label="教室号" prop="room_text" width="180"></el-table-column>
+        <el-table-column label="教室号" prop="room_text" width="800"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>

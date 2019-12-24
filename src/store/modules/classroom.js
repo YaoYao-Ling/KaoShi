@@ -3,7 +3,9 @@ const state = {
 }
 
 const mutations = {
-
+    searchList(state, payload) {
+        console.log(payload);
+    }
 }
 
 const actions = {
@@ -11,6 +13,7 @@ const actions = {
 }
 
 export default {
+    namespaced: true,
     state,
     mutations,
     actions

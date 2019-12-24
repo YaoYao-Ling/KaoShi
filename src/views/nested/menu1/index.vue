@@ -36,9 +36,9 @@
     <!--表格 -------------------------------------------------------------------------------------- -->
     <template>
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column label="班级名" prop="grade_name" width="180"></el-table-column>
-        <el-table-column label="课程名" width="180" prop="subject_text"></el-table-column>
-        <el-table-column label="教室号" prop="room_text" width="180"></el-table-column>
+        <el-table-column label="班级名" prop="grade_name" width="300"></el-table-column>
+        <el-table-column label="课程名" width="300" prop="subject_text"></el-table-column>
+        <el-table-column label="教室号" prop="room_text" width="300"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -66,7 +66,7 @@ export default {
         name: "", //班级名
         room: "", //教室id
         subject: "", //课程id
-        flag:''
+        flag:false
       },
       formLabelWidth: "120px",
       // 添加弹窗--------------------------
@@ -87,9 +87,9 @@ export default {
       console.log(row);
       this.dialogFormVisible = true;
       this.form.name = row.grade_name;
-      this.form.room = row.room_text;
-      this.form.subject = row.subject_text;
-      this.form.flag = 1;
+      this.form.room = row.room_id;
+      this.form.subject = row.subject_id;
+      this.form.flag = true;
       this.grade_id = row.grade_id;
     },
     //删除班级--------------------------
@@ -109,7 +109,7 @@ export default {
         this.form.name = '';
         this.form.room = '';
         this.form.subject = '';
-        this.form.flag = '';
+        this.form.flag = false;
         this.grade_id = '';
         this.dialogFormVisible = false;
       } else {

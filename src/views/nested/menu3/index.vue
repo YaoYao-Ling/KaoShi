@@ -35,11 +35,11 @@
     <!-- 表格 -------------------------------------------------------------------------------->
     <template>
       <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
-        <el-table-column label="姓名" prop="student_name" width="180"></el-table-column>
-        <el-table-column label="学号" prop="student_id" width="180"></el-table-column>
-        <el-table-column label="班级" prop="grade_name" width="180"></el-table-column>
-        <el-table-column label="教室" prop="room_text" width="180"></el-table-column>
-        <el-table-column label="密码" prop="student_pwd" width="180"></el-table-column>
+        <el-table-column label="姓名" prop="student_name" width="200"></el-table-column>
+        <el-table-column label="学号" prop="student_id" width="200"></el-table-column>
+        <el-table-column label="班级" prop="grade_name" width="200"></el-table-column>
+        <el-table-column label="教室" prop="room_text" width="200"></el-table-column>
+        <el-table-column label="密码" prop="student_pwd" width="300"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -89,15 +89,12 @@ export default {
       console.log(res.data);
       this.tableData = res.data;
     },
-    // 表格编辑删除-----------------------
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
     //删除学生--------------------------
     async handleDelete(index, row) {
       console.log(index, row);
      await delectStudent(row.student_id);
       alert("删除成功");
+      this.getStudentList();
     },
     //点击搜索-----------------------------
     search(formInline) {},

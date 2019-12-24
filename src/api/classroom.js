@@ -40,8 +40,8 @@ export function deleRoom(id) {
 //删除学生-------------------------------------
 export function delectStudent(id) {
     return request({
-        url: `/manger/student/:id=>${id}`,
-        method: 'DELETE'
+        url: `/manger/student/${id}`,
+        method: 'delete'
     })
 }
 //添加班级----------------------------------------
@@ -58,7 +58,7 @@ export function updataClass(grade_id, obj) {
     return request({
         url: '/manger/grade/update',
         method: 'PUT',
-        data: { grade_id, grade_name: obj.name, room_id: obj.room, subject_id: obj.subject }
+        data: { grade_id, grade_name: obj.name, subject_id: obj.subject, room_id: obj.room }
     })
 }
 //添加教室---------------------------------------------
