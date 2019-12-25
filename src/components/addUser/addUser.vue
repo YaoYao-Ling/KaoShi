@@ -13,104 +13,146 @@
         <input type="text" placeholder="请输入密码" v-model="userList.userPwd" />
       </div>
       <div class="ipt-select">
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            {{userList.valueId}}
-            <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="管理员">管理员</el-dropdown-item>
-            <el-dropdown-item command="出题者">出题者</el-dropdown-item>
-            <el-dropdown-item command="浏览者">浏览者</el-dropdown-item>
-            <el-dropdown-item command="学生">学生</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+        <el-select v-model="userList.value" placeholder="请选择身份id" @change="changer">
+            <el-option
+              v-for="(item,index) in UserList"
+              :key="index"
+              :label="item.identity_text"
+              :value="item"
+            
+            ></el-option>
+          </el-select>
       </div>
       <div class="btn-button">
         <el-button class="qd" @click="addUserInfo(userList)">确定</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="clear">重置</el-button>
       </div>
     </div>
     <div v-if="this.currIndex == 1">
       <div class="ipt-select">
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            {{userList.valueId}}
-            <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item :command="item.user_name" v-for="(item,index) in IdentityName" :key="index">{{item.user_name}}</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+        <el-select v-model="upData.curIn" placeholder="请选择身份id" @change="changer1">
+            <el-option
+              v-for="(val,index1) in getUserListall"
+              :key="index1"
+              :label="val.user_name"
+              :value="val"
+            
+            ></el-option>
+          </el-select>
       </div>
       <div class="inp-use">
-        <input type="text" placeholder="请输入用户名" v-model="userList.userName" />
+        <input type="text" placeholder="请输入用户名" v-model="upData.dataName" />
       </div>
       <div class="inp-pwd">
-        <input type="text" placeholder="请输入密码" v-model="userList.userPwd" />
+        <input type="text" placeholder="请输入密码" v-model="upData.dataPwd" />
       </div>
       <div class="ipt-select">
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            {{userList.valueId}}
-            <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="管理员">管理员</el-dropdown-item>
-            <el-dropdown-item command="出题者">出题者</el-dropdown-item>
-            <el-dropdown-item command="浏览者">浏览者</el-dropdown-item>
-            <el-dropdown-item command="学生">学生</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+        <el-select v-model="userList.value" placeholder="请选择身份id" @change="changer2">
+            <el-option
+              v-for="(item,index) in UserList"
+              :key="index"
+              :label="item.identity_text"
+              :value="item"
+            
+            ></el-option>
+          </el-select>
       </div>
       <div class="btn-button">
-        <el-button class="qd">确定</el-button>
-        <el-button>重置</el-button>
+        <el-button class="qd" @click="upDataUserInfo(upData)">确定</el-button>
+        <el-button @click="clear">重置</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import { addList, addIdentity } from '@/api/table'
+import { addList, addIdentity, upDataUser } from '@/api/table'
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
       currIndex: 0,
-       userList: {
-        userName: "", //用户名
-        userPwd: "", //密码
-        valueId: "请选择身份id", //身份Id
+      value:'',
+      curIn:'',
+      item:{},
+      val:{},
+      userList: {
+        userName: '', //用户名
+        userPwd: '', //密码
+        value: '', //身份Id
       },
-      IdentityName:[]
-    };
+      upData: {
+        dataName: '', //用户名
+        dataPwd: '', //密码
+        curIn: '', //身份Id
+        value:'',
+        dataUserId:'',
+        identityId:''
+      },
+      IdentityName: []
+    }
   },
+  computed:{
+      ...mapState({
+        UserList: state => state.attempt.UserList,
+        getUserListall: state => state.attempt.getUserListall
+      })
+    },
   methods: {
-    ...mapState({
-      token: store => store.user.token
-    }),
     tabAddUser() {
-      this.currIndex = 0;
+      this.currIndex = 0
     },
-    tabUpdataUser() {
-      this.currIndex = 1;
+    async tabUpdataUser() {
+      this.currIndex = 1
+      const res = await addIdentity()
+      this.IdentityName = res.data
     },
-    handleCommand(command) {
-      this.userList.valueId = command;
+    changer(item){
+      this.item = item
+      this.userList.value = item.identity_text
+      this.upData.value = item.identity_text
+    },
+    changer1(val){
+        this.val = val
+        this.upData.curIn = val.user_name
+        this.upData.dataUserId = val.user_id
+    },
+    changer2(item){
+      this.item = item
+      this.upData.value = item.identity_text
+      this.upData.identityId = item.identity_id
+    },
+    clear(){
+      this.userList.userName ='', //用户名
+      this.userList.userPwd = '', //密码
+      this.userList.value = '', //身份Id
+      
+      this.upData.dataName = '', //用户名
+      this.upData.dataPwd = '', //密码
+      this.upData.curIn = '', //身份Id
+      this.upData.value = ''
     },
     // 添加用户
     async addUserInfo(userList) {
-      let res =await addList(userList);
-      console.log(res)
-      alert(res.msg);
-    }
+      const res = await addList(userList)
+      alert(res.msg)
+    },
+    // 更新用户信息
+    async upDataUserInfo(upData) {
+      const res = await upDataUser(upData)
+      alert(res.msg)
+    },
+    ...mapActions({
+        getUserBean:"attempt/getUserBean",
+        getUserNameList:"attempt/getUserNameList"
+      })
   },
-  async mounted(){
-    let res = await addIdentity();
-    this.IdentityName = res.data;
-  }
-};
+    mounted(){
+        this.getUserBean(),
+        this.getUserNameList()
+    }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -120,8 +162,8 @@ export default {
 .wrap .btn-add {
   margin: 10px 10px;
 }
-.wrap div{
-    width: 100%;
+.wrap div {
+  width: 100%;
 }
 .wrap div .inp-use {
   margin: 20px 10px;
@@ -142,7 +184,6 @@ export default {
   height: 40px;
   margin: 0px 10px;
   color: #eee;
- 
 }
 .wrap div .btn-button {
   margin: 20px 10px;
@@ -153,10 +194,12 @@ export default {
 }
 
 .el-dropdown-link {
-    cursor: pointer;
-    color: #409EFF;
+  cursor: pointer;
+  color: #409eff;
 }
 .el-icon-arrow-down {
-font-size: 14px;
+  font-size: 14px;
 }
+
 </style>
+

@@ -16,7 +16,7 @@
       <!-- 身份数据 -->
       <IdenTity v-else-if="userList.length == 3" :currItem="currItem" :list="userList"></IdenTity>
       <!-- api接口权限 -->
-      <ApiVar v-else-if="userList.length == 34" :currItem="currItem" :list="userList"></ApiVar>
+      <ApiVar v-else-if="userList.length == 35" :currItem="currItem" :list="userList"></ApiVar>
       <!-- 身份和api接口关系 -->
       <BetWeen v-else-if="userList.length == 58" :currItem="currItem" :list="userList"></BetWeen>
       <!-- 视图接口权限 -->

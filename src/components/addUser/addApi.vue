@@ -5,24 +5,44 @@
           <el-button>添加api接口权限</el-button>
         </div>
         <div class="inp-use">
-          <input type="text" placeholder="请输入api接口权限名称" />
+          <input type="text" placeholder="请输入api接口权限名称" v-model="apiList.apiName"/>
         </div>
         <div class="inp-pwd">
-          <input type="text" placeholder="请输入api接口权限url" />
+          <input type="text" placeholder="请输入api接口权限url" v-model="apiList.apiUrl"/>
         </div>
         <div class="inp-pwd">
-          <input type="text" placeholder="请输入api接口权限方法" />
+          <input type="text" placeholder="请输入api接口权限方法" v-model="apiList.apitype"/>
         </div>
         <div class="btn-button">
-          <el-button class="qd">确定</el-button>
-          <el-button>重置</el-button>
+          <el-button class="qd" @click="addApiTk(apiList)">确定</el-button>
+          <el-button @click="clear">重置</el-button>
         </div>
     </div>
 </template>
 
 <script>
+import { addApiType } from '@/api/table'
 export default {
-
+    data(){
+      return {
+          apiList:{
+             apiName:'',
+             apiUrl:'',
+             apitype:''
+          }
+      }
+    },
+    methods:{
+       clear(){
+         this.apiList.apiName = '',
+         this.apiList.apiUrl = '',
+         this.apiList.apitype = ''
+       },
+       async addApiTk(apiList){
+         const res = await addApiType(apiList)
+         alert(res.msg)
+       }
+    }
 }
 </script>
 

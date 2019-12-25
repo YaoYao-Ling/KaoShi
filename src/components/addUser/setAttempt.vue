@@ -5,33 +5,74 @@
           <el-button>给身份设置试图权限</el-button>
         </div>
         <div class="ipt-select">
-          <select name id>
-            <option value>请选择身份id</option>
-            <option value>管理员</option>
-            <option value>出题者</option>
-            <option value>浏览者</option>
-            <option value>学生</option>
-          </select>id
+          <el-select v-model="value" placeholder="请选择身份id" @change="changer">
+            <el-option
+              v-for="(item,index) in UserList"
+              :key="index"
+              :label="item.identity_text"
+              :value="item"
+            
+            ></el-option>
+          </el-select>
         </div>
         <div class="ipt-select">
-          <select name id>
-            <option value>请选择试图权限id</option>
-            <option value>管理员</option>
-            <option value>出题者</option>
-            <option value>浏览者</option>
-            <option value>学生</option>
-          </select>
+          <el-select v-model="curIn" placeholder="请选择视图权限id" @change="changer1">
+            <el-option
+              v-for="(val,index1) in data"
+              :key="index1"
+              :label="val.view_authority_text"
+              :value="val"
+            
+            ></el-option>
+          </el-select>
         </div>
         <div class="btn-button">
-          <el-button class="qd">确定</el-button>
+          <el-button class="qd" @click="btn(item,val)">确定</el-button>
           <el-button>重置</el-button>
         </div>
     </div>
 </template>
 
 <script>
+import { setPrivilegesType } from '@/api/table'
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
-
+    data(){
+      return {
+        value:'',
+        curIn:'',
+        item:{},
+        val:{}
+      }
+    },
+    computed:{
+      ...mapState({
+        UserList: state => state.attempt.UserList,
+        data: state => state.attempt.data
+      })
+    },
+    methods:{
+      changer(item){
+        this.item = item
+         this.value = item.identity_text
+      },
+      changer1(val){
+        this.val = val
+         this.curIn = val.view_authority_text
+      },
+      async btn(item,val){
+         let res = await setPrivilegesType(item,val)
+         alert(res.msg)
+      },
+      ...mapActions({
+        getUserBean:"attempt/getUserBean",
+        changeSetting: "attempt/changeSetting"
+      })
+    },
+    mounted(){
+        this.getUserBean(),
+        this.changeSetting()
+    }
 }
 </script>
 

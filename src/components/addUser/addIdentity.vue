@@ -5,18 +5,33 @@
           <el-button>添加身份</el-button>
         </div>
         <div class="inp-use">
-          <input type="text" placeholder="请输入身份名称" />
+          <input type="text" placeholder="请输入身份名称" v-model="type"/>
         </div>
         <div class="btn-button">
-          <el-button class="qd">确定</el-button>
-          <el-button>重置</el-button>
+          <el-button class="qd" @click="addIdentityInfo(type)">确定</el-button>
+          <el-button @click="clear">重置</el-button>
         </div>
     </div>
 </template>
 
 <script>
+import { addIdentityType } from '@/api/table'
 export default {
-
+    data(){
+      return {
+        type:''
+      }
+    },
+    methods:{
+      // 重置
+      clear(){
+        this.type=''
+      },
+      async addIdentityInfo(type){
+         let res = await addIdentityType(type)
+         alert(res.msg)
+      }
+    }
 }
 </script>
 

@@ -1,10 +1,9 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function userListAll() {
   return request({
-    url: '/user/login',
-    method: 'post',
-    data
+    url: '/user/user',
+    method: 'get'
   })
 }
 
