@@ -1,5 +1,6 @@
 <template>
   <div style="padding:30px;">
+    <h2>教室管理</h2>
     <el-button type="primary" @click="dialogFormVisible = true">+添加教室</el-button>
     <!-- --------------------------------------------------------------- -->
     <el-dialog title="添加教室" :visible.sync="dialogFormVisible">

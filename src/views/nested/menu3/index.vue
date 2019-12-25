@@ -1,5 +1,6 @@
 <template>
   <div style="padding:30px;">
+    <h2>学生管理</h2>
     <!-- 搜索栏 ------------------------------------------------------------------------->
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item>
@@ -7,22 +8,12 @@
       </el-form-item>
       <el-form-item>
         <el-select v-model="formInline.num" placeholder="请选择教室号">
-          <el-option
-            v-for="(item,index) in tableData"
-            :key="index"
-            :label="item.room_text"
-            :value="item.room_text"
-          ></el-option>
+          <el-option v-for="(item,index) in room_text" :key="index" :label="item" :value="item"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
         <el-select v-model="formInline.name" placeholder="班级名">
-          <el-option
-            v-for="(item,index) in tableData"
-            :key="index"
-            :label="item.grade_name"
-            :value="item.grade_name"
-          ></el-option>
+          <el-option v-for="(item,index) in grade_name" :key="index" :label="item" :value="item"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -34,7 +25,10 @@
     </el-form>
     <!-- 表格 -------------------------------------------------------------------------------->
     <template>
-      <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+      <el-table
+        :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+        style="width: 100%"
+      >
         <el-table-column label="姓名" prop="student_name" width="200"></el-table-column>
         <el-table-column label="学号" prop="student_id" width="200"></el-table-column>
         <el-table-column label="班级" prop="grade_name" width="200"></el-table-column>
@@ -65,13 +59,14 @@
 </template>
   
 <script>
-import { studentList, delectStudent } from "@/api/classroom.js";
+import { delectStudent } from "@/api/classroom.js";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
       // 分页器----------------------------------------
-       currentPage:1,//初始页
-       pagesize:10,//每页条数
+      currentPage: 1, //初始页
+      pagesize: 10, //每页条数
       // 输入框----------------------------------------
       formInline: {
         user: "",
@@ -82,25 +77,39 @@ export default {
       tableData: []
     };
   },
+  computed: {
+    ...mapState({
+      studentList: state => state.classroom.studentList, //学生数据
+      searchList: state => state.classroom.searchList, //搜索数据
+      room_text: state => state.classroom.room_text, //下拉选择教室号
+      grade_name: state => state.classroom.grade_name //下拉选择教室号
+    })
+  },
   methods: {
-    //获取学生管理数据---------------------------
-    async getStudentList() {
-      let res = await studentList();
-      console.log(res.data);
-      this.tableData = res.data;
-    },
+    ...mapMutations({
+      getsearchList: "classroom/getsearchList"
+    }),
+    ...mapActions({
+      getstudentList: "classroom/getstudentList"
+    }),
     //删除学生--------------------------
     async handleDelete(index, row) {
       console.log(index, row);
-     await delectStudent(row.student_id);
+      await delectStudent(row.student_id);
       alert("删除成功");
       this.getStudentList();
     },
-    //点击搜索-----------------------------
-    search(formInline) {},
-    // 搜索重置按钮------------------------
+    //点击搜索------------------------------
+    async search(formInline) {
+      await this.getsearchList(formInline);
+      this.tableData = this.searchList;
+    },
+    //重置按钮------------------------
     onSubmit() {
-      console.log("submit!");
+      this.formInline.user = "";
+      this.formInline.num = "";
+      this.formInline.name = "";
+      this.tableData = this.studentList;
     },
     // 每页条数-------------------------------
     handleSizeChange(val) {
@@ -111,10 +120,15 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.currentPage = val;
+    },
+    //获取学生数据------------------------------
+    async getList() {
+      await this.getstudentList();
+      this.tableData = this.studentList;
     }
   },
   created() {
-    this.getStudentList();
+    this.getList();
   }
 };
 </script>

@@ -1,8 +1,9 @@
 <template>
   <div style="padding:30px;">
+    <h2>班级管理</h2>
     <el-button type="primary" @click="dialogFormVisible = true">+添加班级</el-button>
     <!-- --------------------------------------------------------------- -->
-    <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
+    <el-dialog :title="text" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="班级名" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -10,7 +11,7 @@
         <el-form-item label="教室号" :label-width="formLabelWidth">
           <el-select v-model="form.room" placeholder="请选择教室号">
             <el-option
-              v-for="(item,index) in tableData"
+              v-for="(item,index) in classSelect"
               :key="index"
               :label="item.room_text"
               :value="item.room_id"
@@ -20,7 +21,7 @@
         <el-form-item label="课程名" :label-width="formLabelWidth">
           <el-select v-model="form.subject" placeholder="课程名">
             <el-option
-              v-for="(item,index) in tableData"
+              v-for="(item,index) in classSelect"
               :key="index"
               :label="item.subject_text"
               :value="item.subject_id"
@@ -50,12 +51,11 @@
   </div>
 </template>
   </div>
-
 </template>
 <script>
 import axios from "axios";
-import { classList, delectClass, addClass, updataClass } from "@/api/classroom";
-import { mapState, mapMutations } from "vuex";
+import { delectClass, addClass, updataClass } from "@/api/classroom";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -66,21 +66,30 @@ export default {
         name: "", //班级名
         room: "", //教室id
         subject: "", //课程id
-        flag:false
+        flag: false
       },
       formLabelWidth: "120px",
       // 添加弹窗--------------------------
       dialogFormVisible: false,
       // 表格------------------------------
-      tableData: []
+      tableData: [],
+      text:'添加班级'
     };
   },
+  computed: {
+    //获取班级管理数据----------------------------
+    ...mapState({
+      classList: state => state.classroom.classList,
+      classSelect: state => state.classroom.classSelect
+    })
+  },
   methods: {
-    //获取班级管理数据----------
-    async getClassList() {
-      let res = await classList();
-      console.log(res);
-      this.tableData = res.data;
+    ...mapActions({
+      getClassList: "classroom/getClassList"
+    }),
+    async getList() {
+      await this.getClassList();
+      this.tableData = this.classList;
     },
     //编辑班级--------------------------
     handleEdit(index, row) {
@@ -91,37 +100,43 @@ export default {
       this.form.subject = row.subject_id;
       this.form.flag = true;
       this.grade_id = row.grade_id;
+      this.text = '编辑班级'
     },
     //删除班级--------------------------
     async handleDelete(index, row) {
       console.log(row.grade_id);
       await delectClass(row.grade_id);
       alert("删除成功");
-      this.getClassList();
+      this.getList();
     },
     //添加编辑班级---------------------------
     async add(from) {
       console.log(from);
       if (from.flag) {
-        await updataClass(this.grade_id,from);
+        this.text = '编辑班级'
+        await updataClass(this.grade_id, from);
         alert("修改成功");
-        this.getClassList();
-        this.form.name = '';
-        this.form.room = '';
-        this.form.subject = '';
+        this.tableData = this.classList;
+        this.form.name = "";
+        this.form.room = "";
+        this.form.subject = "";
         this.form.flag = false;
-        this.grade_id = '';
+        this.grade_id = "";
         this.dialogFormVisible = false;
+        this.text = '添加班级'
       } else {
+        this.text = '添加班级'
         await addClass(from);
         alert("添加成功");
         this.dialogFormVisible = false;
-        this.getClassList();
+        this.getList();
       }
     }
   },
   created() {
-    this.getClassList();
+    this.getList();
+    console.log(this.classSelect);
+    
   }
 };
 </script>
