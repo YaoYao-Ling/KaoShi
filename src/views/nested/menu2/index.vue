@@ -6,7 +6,7 @@
     <el-dialog title="添加教室" :visible.sync="dialogFormVisible">
       <el-form>
         <el-form-item label="教室号" :label-width="formLabelWidth">
-          <el-input v-model="num" autocomplete="off"></el-input>
+          <el-input v-model="num" autocomplete="off" style="width:50%"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -49,6 +49,7 @@ export default {
      await addRoom(num);
       alert('添加成功');
       this.getRoomList();
+      this.num = '';
       this.dialogFormVisible = false
     },
     //获取教室数据---------------------------

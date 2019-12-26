@@ -6,31 +6,31 @@
     <el-dialog :title="text" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="班级名" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+          <el-input v-model="form.name" autocomplete="off" style="width:50%"></el-input>
         </el-form-item>
         <el-form-item label="教室号" :label-width="formLabelWidth">
           <el-select v-model="form.room" placeholder="请选择教室号">
             <el-option
               v-for="(item,index) in classSelect"
               :key="index"
-              :label="item.room_text"
-              :value="item.room_id"
+              :label="item"
+              :value="data_Id[index]"
             ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="课程名" :label-width="formLabelWidth">
           <el-select v-model="form.subject" placeholder="课程名">
             <el-option
-              v-for="(item,index) in classSelect"
+              v-for="(item,index) in classSubject"
               :key="index"
-              :label="item.subject_text"
-              :value="item.subject_id"
+              :label="item"
+              :value="data_Sub[index]"
             ></el-option>
           </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="this.close">取 消</el-button>
         <el-button type="primary" @click="()=>this.add(form)">确 定</el-button>
       </div>
     </el-dialog>
@@ -73,14 +73,17 @@ export default {
       dialogFormVisible: false,
       // 表格------------------------------
       tableData: [],
-      text:'添加班级'
+      text: "添加班级"
     };
   },
   computed: {
     //获取班级管理数据----------------------------
     ...mapState({
       classList: state => state.classroom.classList,
-      classSelect: state => state.classroom.classSelect
+      classSelect: state => state.classroom.classSelect,
+      classSubject: state => state.classroom.classSubject,
+      data_Id: state => state.classroom.data_Id,
+      data_Sub: state => state.classroom.data_Sub
     })
   },
   methods: {
@@ -100,7 +103,7 @@ export default {
       this.form.subject = row.subject_id;
       this.form.flag = true;
       this.grade_id = row.grade_id;
-      this.text = '编辑班级'
+      this.text = "编辑班级";
     },
     //删除班级--------------------------
     async handleDelete(index, row) {
@@ -113,30 +116,44 @@ export default {
     async add(from) {
       console.log(from);
       if (from.flag) {
-        this.text = '编辑班级'
+        this.text = "编辑班级";
         await updataClass(this.grade_id, from);
         alert("修改成功");
-        this.tableData = this.classList;
+        this.getList();
         this.form.name = "";
         this.form.room = "";
         this.form.subject = "";
         this.form.flag = false;
         this.grade_id = "";
         this.dialogFormVisible = false;
-        this.text = '添加班级'
+        this.text = "添加班级";
       } else {
-        this.text = '添加班级'
+        this.text = "添加班级";
+        console.log(from);
         await addClass(from);
         alert("添加成功");
+        this.form.name = "";
+        this.form.room = "";
+        this.form.subject = "";
+        this.form.flag = false;
+        this.grade_id = "";
         this.dialogFormVisible = false;
         this.getList();
       }
+    },
+    //点击取消---------------------------------------------
+    close() {
+      this.form.name = "";
+      this.form.room = "";
+      this.form.subject = "";
+      this.form.flag = false;
+      this.grade_id = "";
+      this.dialogFormVisible = false;
+      this.text = "添加班级";
     }
   },
   created() {
     this.getList();
-    console.log(this.classSelect);
-    
   }
 };
 </script>

@@ -97,7 +97,7 @@ export default {
       console.log(index, row);
       await delectStudent(row.student_id);
       alert("删除成功");
-      this.getStudentList();
+      this.getList();
     },
     //点击搜索------------------------------
     async search(formInline) {
