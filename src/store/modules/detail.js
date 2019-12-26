@@ -10,7 +10,6 @@ const mutations = {
 const actions = {
   async detailFunc({ commit }) {
     let res = await del()
-    // console.log(res)
     commit('fn', res)
   }
 }
