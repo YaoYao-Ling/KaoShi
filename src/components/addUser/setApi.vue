@@ -113,6 +113,7 @@ export default {
   margin: 20px 10px;
   .qd {
     width: 100px;
+    color:white;
     background: linear-gradient(-90deg, #4e75ff, #0139fd) !important;
   }
 }

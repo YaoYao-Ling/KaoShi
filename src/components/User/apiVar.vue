@@ -7,14 +7,14 @@
           <el-table-column prop="api_authority_url" label="api权限url" style="width: 30%"></el-table-column>
           <el-table-column prop="api_authority_method" label="api权限方法" style="width: 30%"></el-table-column>
       </el-table>
-      <el-pagination
-          @size-change="handleSizeChange"
-          @current-page="handleCurrentChange"
-          :page-size="pagesize"
-          :current-page="currentPage"
-          layout="prev, pager, next"
-          :total="list.length">
-      </el-pagination>
+      <el-pagination 
+        background 
+        layout="prev, pager, next" 
+        :total="list.length"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+    >
+    </el-pagination>
   </div>
 </template>
 

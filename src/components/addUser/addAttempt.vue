@@ -68,21 +68,6 @@ export default {
 .wrap .btn-add {
   margin: 10px 10px;
 }
-
-.wrap .inp-use {
-  margin: 20px 10px;
-  input {
-    width: 100%;
-    height: 30px;
-  }
-}
-.wrap .inp-pwd {
-  margin: 20px 10px;
-  input {
-    width: 100%;
-    height: 30px;
-  }
-}
 .wrap .ipt-select {
   width: 100%;
   height: 40px;
@@ -98,6 +83,7 @@ export default {
   margin: 20px 10px;
   .qd {
     width: 100px;
+    color:white;
     background: linear-gradient(-90deg, #4e75ff, #0139fd) !important;
   }
 }

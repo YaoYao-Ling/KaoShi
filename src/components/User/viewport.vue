@@ -6,14 +6,14 @@
             <el-table-column prop="view_authority_text" label="视图权限名称" style="width: 50%"></el-table-column>
             <el-table-column prop="view_id" label="视图id" style="width: 50%"></el-table-column>
         </el-table>
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-page="handleCurrentChange"
-          :page-size="pagesize"
-          :current-page="currentPage"
-          layout="prev, pager, next"
-          :total="list.length">
-      </el-pagination>
+        <el-pagination 
+        background 
+        layout="prev, pager, next" 
+        :total="list.length"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+    >
+    </el-pagination>
    </div>
 </template>
 

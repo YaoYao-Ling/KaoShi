@@ -12,15 +12,15 @@
         </li>
       </ul>
       <!-- 用户展示列表 -->
-      <UserList v-if="userList.length == 9" :currItem="currItem" :list="userList"></UserList>
+      <UserList v-if="currItem == '用户数据'" :currItem="currItem" :list="userList"></UserList>
       <!-- 身份数据 -->
-      <IdenTity v-else-if="userList.length == 3" :currItem="currItem" :list="userList"></IdenTity>
+      <IdenTity v-else-if="currItem == '身份数据'" :currItem="currItem" :list="userList"></IdenTity>
       <!-- api接口权限 -->
-      <ApiVar v-else-if="userList.length == 35" :currItem="currItem" :list="userList"></ApiVar>
+      <ApiVar v-else-if="currItem == 'api接口权限'" :currItem="currItem" :list="userList"></ApiVar>
       <!-- 身份和api接口关系 -->
-      <BetWeen v-else-if="userList.length == 58" :currItem="currItem" :list="userList"></BetWeen>
+      <BetWeen v-else-if="currItem == '身份和api接口关系'" :currItem="currItem" :list="userList"></BetWeen>
       <!-- 视图接口权限 -->
-      <Viewport v-else-if="userList.length == 20" :currItem="currItem" :list="userList"></Viewport>
+      <Viewport v-else-if="currItem == '视图接口权限'" :currItem="currItem" :list="userList"></Viewport>
       <!-- 身份和试图权限关系 -->
       <Expand v-else :currItem="currItem" :list="userList"></Expand>
   </div>

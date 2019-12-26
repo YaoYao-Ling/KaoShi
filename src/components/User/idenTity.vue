@@ -5,15 +5,14 @@
       <el-table :data="list.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
           <el-table-column prop="identity_text" label="身份名称" style="width: 100%"></el-table-column>
       </el-table>
-      <el-pagination
-          @size-change="handleSizeChange"
-          @current-page="handleCurrentChange"
-          :page-size="pagesize"
-          :current-page="currentPage"
-          layout="prev, pager, next"
-          :total="list.length"
-      >
-      </el-pagination>
+      <el-pagination 
+        background 
+        layout="prev, pager, next" 
+        :total="list.length"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+    >
+    </el-pagination>
   </div>
 </template>
 

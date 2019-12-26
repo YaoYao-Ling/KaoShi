@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">考试管理系统</h3>
+        <h3 class="title">Login Form</h3>
       </div>
 
       <el-form-item prop="username">
@@ -41,11 +41,11 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">username: chenmanjie</span>
-        <span> password: Chenmanjie123!</span>
+        <span style="margin-right:20px;">username: admin</span>
+        <span> password: any</span>
       </div>
 
     </el-form>
@@ -54,20 +54,22 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { log } from 'util'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
+      // console.log(rule,value)
       if (!validUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
+        callback(new Error('请输入用户名'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('密码不能少于6位'))
+        callback(new Error('密码不少于6位'))
       } else {
         callback()
       }
@@ -89,11 +91,7 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
-        const query = route.query;
-        if(query){
-           this.redirect = query.redirect;
-        }
-        // this.redirect = route.query && route.query.redirect
+        this.redirect = route.query && route.query.redirect
       },
       immediate: true
     }
@@ -111,7 +109,8 @@ export default {
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
-        console.log(this.loading);
+        // console.log(valid);
+        
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {

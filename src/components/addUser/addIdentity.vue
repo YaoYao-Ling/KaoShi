@@ -48,6 +48,10 @@ export default {
   input {
     width: 100%;
     height: 30px;
+    border:solid 1px #eee;
+    color:#eee;
+    font-size: 14px;
+    padding-left: 20px;
   }
 }
 
@@ -55,6 +59,7 @@ export default {
   margin: 20px 10px;
   .qd {
     width: 100px;
+    color:white;
     background: linear-gradient(-90deg, #4e75ff, #0139fd) !important;
   }
 }
