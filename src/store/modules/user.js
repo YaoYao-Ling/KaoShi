@@ -5,7 +5,9 @@ import { resetRouter } from '@/router'
 const state = {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    roles: [],
+    userList:[]    //用户数据
 }
 
 const mutations = {
@@ -17,6 +19,12 @@ const mutations = {
     },
     SET_AVATAR: (state, avatar) => {
         state.avatar = avatar
+    },
+    SET_ROLES: (state, roles) => {
+      state.roles = roles
+    },
+    userStatsURI(state,payload) {
+        state.userList = payload
     }
 }
 
@@ -58,6 +66,10 @@ const actions = {
             //     reject(error)
             // })
             resolve()
+            const roles = ['admin']
+            commit('SET_ROLES', roles)
+            resolve({roles});
+            
         })
     },
 
@@ -75,14 +87,18 @@ const actions = {
         })
     },
 
-    // remove token
-    resetToken({ commit }) {
-        return new Promise(resolve => {
-            commit('SET_TOKEN', '')
-            removeToken()
-            resolve()
-        })
-    }
+  // remove token
+  resetToken({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      removeToken()
+      resolve()
+    })
+  },
+  // 获取用户数据
+  getUserList(state,payload){
+    
+  }
 }
 
 export default {

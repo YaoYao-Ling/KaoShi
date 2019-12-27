@@ -6,6 +6,8 @@ import settings from './modules/settings'
 import user from './modules/user'
 import classroom from './modules/classroom'
 import yuejuan from './modules/yuejuan'
+import attempt from './modules/attempt'
+import userList from './modules/userList'
 
 Vue.use(Vuex)
 
@@ -15,7 +17,9 @@ const store = new Vuex.Store({
         settings,
         user,
         classroom,
-        yuejuan
+        yuejuan,
+        attempt,
+        userList
     },
     getters
 })

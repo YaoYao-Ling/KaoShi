@@ -1,79 +1,100 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
-    >
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
-        </template>
-      </el-table-column>
-    </el-table>
+    <div class="top">
+      <h3>添加用户</h3>
+    </div>
+    <div class="main">
+      <!-- 添加用户 -->
+      <li>
+        <AddUser></AddUser>
+      </li>
+      <!-- 添加身份 -->
+      <li>
+        <AddIdentity></AddIdentity>
+      </li>
+      <!-- 添加api接口权限 -->
+      <li>
+        <AddApi></AddApi>
+      </li>
+      <!-- 添加试图接口权限 -->
+      <li>
+        <AddAttempt></AddAttempt>
+      </li>
+      <!-- 给身份设置api接口权限 -->
+      <li>
+        <SetApi></SetApi>
+      </li>
+      <!-- 给身份设置试图权限 -->
+      <li>
+        <SetAttempt></SetAttempt>
+      </li>
+    </div>
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
-
+import { mapState } from "vuex";
+import { addList } from "@/api/table";
+import AddUser from "../../components/addUser/addUser";
+import AddIdentity from '../../components/addUser/addIdentity';
+import AddApi from '../../components/addUser/addApi';
+import AddAttempt from '../../components/addUser/addAttempt';
+import SetApi from '../../components/addUser/setApi';
+import SetAttempt from '../../components/addUser/setAttempt'
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,
-      listLoading: true
-    }
+      listLoading: true,
+    };
   },
-  created() {
-    this.fetchData()
+  components: {
+    AddUser,
+    AddIdentity,
+    AddApi,
+    AddAttempt,
+    SetApi,
+    SetAttempt
   },
+  created() {},
   methods: {
-    fetchData() {
-      this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
+    
+  },
+  mounted() {
+    
   }
-}
+};
 </script>
+
+<style lang="scss" scoped>
+.app-container {
+  width: 100%;
+  height: 100%;
+  background: #f0f2f5;
+}
+.app-container .top {
+  width: 100%;
+  height: 50px;
+}
+.app-container .top h3 {
+  line-height: 50px;
+  font-weight: normal;
+}
+.app-container .main {
+  width: 100%;
+  border: solid 1px #ccc;
+  background: #f0f2f5;
+  display: flex;
+  flex-wrap: wrap;
+}
+.app-container .main li {
+  width: 33.3%;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+</style>
