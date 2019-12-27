@@ -60,7 +60,7 @@ export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      // console.log(rule,value)
+      console.log(rule,value)
       if (!validUsername(value)) {
         callback(new Error('请输入用户名'))
       } else {
@@ -109,7 +109,7 @@ export default {
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
-        // console.log(valid);
+        console.log(valid);
         
         if (valid) {
           this.loading = true
