@@ -9,6 +9,9 @@ import yuejuan from './modules/yuejuan'
 import attempt from './modules/attempt'
 import userList from './modules/userList'
 
+// 试题管理
+import test_question_management from './modules/test_question_management'
+
 import detail from "./modules/detail";
 import ExaminationPaperManagement from './modules/ExaminationPaperManagement'
 Vue.use(Vuex)
@@ -23,7 +26,9 @@ const store = new Vuex.Store({
     classroom,
     yuejuan,
     attempt,
-    userList
+    userList,
+    // 试题管理
+    test_question_management
   },
   getters
 })

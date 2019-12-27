@@ -42,16 +42,41 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
+    name: 'dashboard',
+    meta: {
+      title: '试题管理',
+      icon: 'nested'
+    },
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'addQuestions',
+      name: 'addQuestions',
+      component: () => import('@/views/dashboard/addQuestions'),
+      meta: { title: '添加试题' }
+    },
+    {
+      path: 'questionsType',
+      name: 'questionsType',
+      component: () => import('@/views/dashboard/questionsType'),
+      meta: { title: '试题分类' }
+    },
+    {
+      path: 'selectQuestions',
+      name: 'selectQuestions',
+      component: () => import('@/views/dashboard/selectQuestions'),
+      meta: { title: '查看试题' }
+    },
+    {
+      path: 'detailQuestions',
+      name: 'detailQuestions',
+      component: () => import('@/views/dashboard/detailQuestions'),
+    },{
+      path: 'editQuestions',
+      name: 'editQuestions',
+      component: () => import('@/views/dashboard/editQuestions'),
     }]
   },
   {
