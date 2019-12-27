@@ -4,8 +4,7 @@ import getters from './getters'
 import app from './modules/app'
 import settings from './modules/settings'
 import user from './modules/user'
-import added from './modules/added'
-import testList from "./modules/testList";
+
 import detail from "./modules/detail";
 import ExaminationPaperManagement from './modules/ExaminationPaperManagement'
 Vue.use(Vuex)
@@ -15,8 +14,6 @@ const store = new Vuex.Store({
     app,
     settings,
     user,
-    added,
-    testList,
     detail,
     ExaminationPaperManagement
   },
