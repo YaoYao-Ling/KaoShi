@@ -52,12 +52,16 @@ export default {
     }),
     delet(e) {
       // this.deleteExaminationPaperManagementTeacher();
-      console.log(e.target)
       e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 
     },
     jump(){
-      this.updateExaminationPaperManagement(this.newData)
+      let canshu = {
+        exam_exam_id:this.addList.data.exam_exam_id,
+        arr:this.newData
+      }
+        // this.addList.data.exam_exam_id,this.addList.data.user_id,this.addList.data.subject_id
+      this.updateExaminationPaperManagement(canshu)
       this.$router.push('/Listexam');
     }
   },

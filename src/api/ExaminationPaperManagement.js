@@ -31,11 +31,14 @@ export function addExaminationPaperManagement(payload) {
 // export const updateExaminationPaperManagement = (params) => request.put('/exam/exam/w5tcy-g2dts', { question_ids:params.question_ids})
 //["d5osduj-krhc1-akr9l2-9tz2nz","40lhum-rtymrz-r8x2h-6c9od","in5k9-nqedo7-cjpek-30cmi"]
 export const updateExaminationPaperManagement = (params) => {
-  const question_ids = JSON.stringify(params)
+  // const question_ids = JSON.stringify(params )
+
+  console.log(params,'params')
+  const {exam_exam_id,arr} = params
   return request({
-    url: '/exam/exam/q039nsj-d2h053',
+    url: `/exam/exam/${exam_exam_id}`,
     method: 'put',
-    data: { question_ids: JSON.stringify(params) }
+    data: { question_ids: JSON.stringify(arr ) }
   })
 }
 
