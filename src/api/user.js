@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// 展示用户数据
 export function userListAll() {
   return request({
     url: '/user/user',

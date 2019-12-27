@@ -4,7 +4,7 @@
     <h1>{{currItem}}</h1>
     <el-table :data="list.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
       <el-table-column prop="user_name" label="用户名" width="180"></el-table-column>
-      <el-table-column prop="user_pwd" label="密码" style="width: 70%"></el-table-column>
+      <el-table-column prop="user_pwd" label="密码" style="width: 50%"></el-table-column>
       <el-table-column prop="identity_text" label="身份" width="180"></el-table-column>
     </el-table>
     <el-pagination 

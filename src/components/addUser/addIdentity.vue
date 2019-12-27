@@ -49,7 +49,6 @@ export default {
     width: 100%;
     height: 30px;
     border:solid 1px #eee;
-    color:#eee;
     font-size: 14px;
     padding-left: 20px;
   }

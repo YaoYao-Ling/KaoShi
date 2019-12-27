@@ -12,7 +12,7 @@
         </li>
       </ul>
       <!-- 用户展示列表 -->
-      <UserList v-if="currItem == '用户数据'" :currItem="currItem" :list="userList"></UserList>
+      <UserList v-if="currIndex == 0" :currItem="currItem" :list="userDisplay"></UserList>
       <!-- 身份数据 -->
       <IdenTity v-else-if="currItem == '身份数据'" :currItem="currItem" :list="userList"></IdenTity>
       <!-- api接口权限 -->
@@ -28,13 +28,16 @@
 
 <script>
 import axios from 'axios'
-import {mapState} from 'vuex'
 import UserList from '../../components/User/userList'
 import IdenTity from '../../components/User/idenTity'
 import ApiVar from '../../components/User/apiVar'
 import BetWeen from '../../components/User/betWeen'
 import Viewport from '../../components/User/viewport'
 import Expand from '../../components/User/expand'
+
+import {userListAll} from '@/api/user'
+import {mapState, mapActions } from 'vuex'
+
 export default {
 
   data() {
@@ -72,7 +75,8 @@ export default {
   },
   computed:{
       ...mapState({
-        token:store => store.user.token
+        token:store => store.user.token,
+        userDisplay: state => state.userList.userDisplay
       })
   },
   methods: {
@@ -84,14 +88,16 @@ export default {
         this.currIndex = index;
         this.currItem = item.title;
         axios.get('http://169.254.207.20:7002'+item.url,{headers:{authorization:this.token}}).then(res=>{
-          console.log(res.data.data)
           this.userList = res.data.data
         })
-    }
+    },
+    ...mapActions({
+      getUserDisplayList:"userList/getUserDisplayList"
+    })
   },
   mounted(){
-     
-  }
+    this.getUserDisplayList()
+  } 
 }
 </script>
 
