@@ -22,3 +22,11 @@ export function logout() {
     method: 'post'
   })
 }
+
+// 获取当前用户信息
+export function getCurrentUserInformation() {
+  return request({
+    url: '/user/userInfo',
+    method: 'get'
+  })
+} 

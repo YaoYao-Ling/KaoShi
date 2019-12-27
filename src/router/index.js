@@ -47,32 +47,87 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
+    name: 'dashboard',
+    meta: {
+      title: '试题管理',
+      icon: 'nested'
+    },
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'addQuestions',
+      name: 'addQuestions',
+      component: () => import('@/views/dashboard/addQuestions'),
+      meta: { title: '添加试题' }
+    },
+    {
+      path: 'questionsType',
+      name: 'questionsType',
+      component: () => import('@/views/dashboard/questionsType'),
+      meta: { title: '试题分类' }
+    },
+    {
+      path: 'selectQuestions',
+      name: 'selectQuestions',
+      component: () => import('@/views/dashboard/selectQuestions'),
+      meta: { title: '查看试题' }
+    },
+    {
+      path: 'detailQuestions',
+      name: 'detailQuestions',
+      component: () => import('@/views/dashboard/detailQuestions'),
+    },{
+      path: 'editQuestions',
+      name: 'editQuestions',
+      component: () => import('@/views/dashboard/editQuestions'),
     }]
   },
-
+  {
+    path: '/exam',
+    component: Layout,
+    name: 'exam',
+    meta: {
+      title: '用户管理',
+      icon: 'example'
+    },
+    children: [{
+      path: 'addUser',
+      name: 'addUser',
+      component: () => import('@/views/user/addUser'),
+      meta: { title: '添加用户' }
+    },{
+      path: 'userDisplay',
+      name: 'userDisplay',
+      component: () => import('@/views/user/userDisplay'),
+      meta: { title: '用户展示' }
+    }]
+  },
   {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    name: '考试管理',
+    meta: { title: '考试管理', icon: 'example' },
     children: [
       {
         path: 'table',
         name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        component: () => import('@/views/exam/add_exam'),
+        meta: { title: '添加考试', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        component: () => import('@/views/exam/paper_list'),
+        meta: { title: '试卷列表', icon: 'tree' }
+      },
+      {
+        path: 'createTest',
+        name: 'createTest',
+        component: () => import('@/views/exam/create_test'),
+      },
+      {
+        path: 'list',
+        name: 'list',
+        component: () => import('@/views/exam/exam_list'),
       }
     ]
   },
