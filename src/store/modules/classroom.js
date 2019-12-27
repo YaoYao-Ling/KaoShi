@@ -8,7 +8,7 @@ const state = {
     classSelect: [], //添加班级教室选择
     classSubject: [], //添加班级课程选择
     data_Id: [], //添加班级教室id
-    data_Sub: [] //添加班级课程id
+    data_Sub: [], //添加班级课程id
 }
 
 const mutations = {
