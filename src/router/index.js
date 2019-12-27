@@ -123,14 +123,26 @@ export const constantRoutes = [{
             }
         ]
     },
-
     {
-        path: 'external-link',
+        path: '/Marking',
         component: Layout,
+        name: 'Marking',
+        redirect: '/Marking/guanli',
+        meta: { title: '阅卷管理', icon: 'example' },
         children: [{
-            path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-            meta: { title: 'External Link', icon: 'link' }
-        }]
+                path: '/Marking/guanli',
+                name: 'guanli',
+                component: () =>
+                    import ('@/views/Marking/guanli/index'),
+                meta: { title: '待批班级', icon: 'link' }
+            },
+            {
+                path: '/Marking/pijuan',
+                name: 'pijuan',
+                component: () =>
+                    import ('@/views/Marking/pijuan/index')
+            }
+        ]
     },
 
     // 404 page must be placed at the end !!!
