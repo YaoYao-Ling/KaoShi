@@ -9,19 +9,23 @@ import yuejuan from './modules/yuejuan'
 import attempt from './modules/attempt'
 import userList from './modules/userList'
 
+import detail from "./modules/detail";
+import ExaminationPaperManagement from './modules/ExaminationPaperManagement'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    modules: {
-        app,
-        settings,
-        user,
-        classroom,
-        yuejuan,
-        attempt,
-        userList
-    },
-    getters
+  modules: {
+    app,
+    settings,
+    user,
+    detail,
+    ExaminationPaperManagement,
+    classroom,
+    yuejuan,
+    attempt,
+    userList
+  },
+  getters
 })
 
 export default store
