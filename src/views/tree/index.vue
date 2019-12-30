@@ -1,78 +1,135 @@
 <template>
   <div class="app-container">
-    <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom:30px;" />
-
-    <el-tree
-      ref="tree2"
-      :data="data2"
-      :props="defaultProps"
-      :filter-node-method="filterNode"
-      class="filter-tree"
-      default-expand-all
-    />
-
+      <div class="title">用户展示</div>
+      <ul class="nav">
+        <li 
+            v-for="(item,index) in data" 
+            :key="index"
+            :class="{active:currIndex == index }"
+            @click="tab(item,index)"
+        >
+            {{item.title}}
+        </li>
+      </ul>
+      <!-- 用户展示列表 -->
+      <UserList v-if="currIndex == 0" :currItem="currItem" :list="userDisplay"></UserList>
+      <!-- 身份数据 -->
+      <IdenTity v-else-if="currItem == '身份数据'" :currItem="currItem" :list="userList"></IdenTity>
+      <!-- api接口权限 -->
+      <ApiVar v-else-if="currItem == 'api接口权限'" :currItem="currItem" :list="userList"></ApiVar>
+      <!-- 身份和api接口关系 -->
+      <BetWeen v-else-if="currItem == '身份和api接口关系'" :currItem="currItem" :list="userList"></BetWeen>
+      <!-- 视图接口权限 -->
+      <Viewport v-else-if="currItem == '视图接口权限'" :currItem="currItem" :list="userList"></Viewport>
+      <!-- 身份和试图权限关系 -->
+      <Expand v-else :currItem="currItem" :list="userList"></Expand>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import UserList from '../../components/User/userList'
+import IdenTity from '../../components/User/idenTity'
+import ApiVar from '../../components/User/apiVar'
+import BetWeen from '../../components/User/betWeen'
+import Viewport from '../../components/User/viewport'
+import Expand from '../../components/User/expand'
+
+import {userListAll} from '@/api/user'
+import {mapState, mapActions } from 'vuex'
+
 export default {
 
   data() {
     return {
       filterText: '',
-      data2: [{
-        id: 1,
-        label: 'Level one 1',
-        children: [{
-          id: 4,
-          label: 'Level two 1-1',
-          children: [{
-            id: 9,
-            label: 'Level three 1-1-1'
-          }, {
-            id: 10,
-            label: 'Level three 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: 'Level one 2',
-        children: [{
-          id: 5,
-          label: 'Level two 2-1'
-        }, {
-          id: 6,
-          label: 'Level two 2-2'
-        }]
-      }, {
-        id: 3,
-        label: 'Level one 3',
-        children: [{
-          id: 7,
-          label: 'Level two 3-1'
-        }, {
-          id: 8,
-          label: 'Level two 3-2'
-        }]
-      }],
+      currIndex:0,
+      currItem:'用户数据',
+      data: [
+        {title:'用户数据',url:'/user/user'},
+        {title:'身份数据',url:'/user/identity'},
+        {title:'api接口权限',url:'/user/api_authority'},
+        {title:'身份和api接口关系',url:'/user/identity_api_authority_relation'},
+        {title:'视图接口权限',url:'/user/view_authority'},
+        {title:'身份和试图权限关系',url:'/user/identity_view_authority_relation'}
+        ],
       defaultProps: {
         children: 'children',
         label: 'label'
-      }
+      },
+      userList:[]
     }
+  },
+  components:{
+      UserList,
+      IdenTity,
+      ApiVar,
+      BetWeen,
+      Viewport,
+      Expand
   },
   watch: {
     filterText(val) {
       this.$refs.tree2.filter(val)
     }
   },
-
+  computed:{
+      ...mapState({
+        token:store => store.user.token,
+        userDisplay: state => state.userList.userDisplay
+      })
+  },
   methods: {
     filterNode(value, data) {
       if (!value) return true
       return data.label.indexOf(value) !== -1
-    }
-  }
+    },
+    tab(item,index){
+        this.currIndex = index;
+        this.currItem = item.title;
+        axios.get('http://169.254.207.20:7002'+item.url,{headers:{authorization:this.token}}).then(res=>{
+          this.userList = res.data.data
+        })
+    },
+    ...mapActions({
+      getUserDisplayList:"userList/getUserDisplayList"
+    })
+  },
+  mounted(){
+    this.getUserDisplayList()
+  } 
 }
 </script>
 
+<style lang="scss" scoped>
+.app-container{
+  width: 100%;
+  height:100%;
+}
+.app-container .title{
+  width: 100%;
+  height:80px;
+  line-height: 80px;
+  font-size: 25px;
+}
+.app-container .nav{
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+.app-container .nav li{
+  border:solid 1px #ccc;
+  padding: 4px 6px;
+  font-size: 14px;
+}
+.app-container .nav li.active{
+  border:solid 1px blue;
+  color:blue;
+}
+.app-container .title1{
+  width: 100%;
+  height:80px;
+  line-height: 80px;
+  font-size: 35px;
+}
+</style>

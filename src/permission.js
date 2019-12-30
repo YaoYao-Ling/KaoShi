@@ -1,14 +1,14 @@
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
-import NProgress from 'nprogress' // progress bar
+import NProgress from 'nprogress' // progress bar     一个进度条的插件
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
-NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({ showSpinner: false }) // NProgress Configuration   是否有转圈效果
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login'] // no redirect whitelist  没有重定向白名单
 
 router.beforeEach(async(to, from, next) => {
     // start progress bar

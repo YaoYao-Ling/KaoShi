@@ -42,7 +42,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
+        :page-sizes="[8,10, 20, 30, 40]"
         :page-size="pagesize"
         layout="  prev, pager, next,sizes, jumper"
         :total="yueJuanList.length"
