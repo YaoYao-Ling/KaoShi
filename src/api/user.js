@@ -7,13 +7,13 @@ export function login(data) {
         method: 'post',
         data
     })
-  }
+}
 // 展示用户数据
 export function userListAll() {
-  return request({
-    url: '/user/user',
-    method: 'get'
-  })
+    return request({
+        url: '/user/user',
+        method: 'get'
+    })
 }
 
 
