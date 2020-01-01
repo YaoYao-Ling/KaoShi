@@ -28,7 +28,7 @@
         </div>
         <div class="btn-button">
           <el-button class="qd" @click="btn(item,val)">确定</el-button>
-          <el-button @click="clear">重置</el-button>
+          <el-button>重置</el-button>
         </div>
     </div>
 </template>
@@ -60,13 +60,8 @@ export default {
         this.val = val
          this.curIn = val.api_authority_text
       },
-      clear(){
-        this.value="",
-        this.curIn=""
-      },
       async btn(item,val){
          let res = await setApiType(item,val)
-         console.log(res)
          alert(res.msg)
       },
       ...mapActions({

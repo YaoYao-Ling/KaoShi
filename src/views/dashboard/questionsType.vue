@@ -133,11 +133,11 @@ export default {
 
 <style lang="scss" scoped>
 
-.el-table__row {
+>>> .el-table__row {
   width: 100px;
 }
 
-.dialog-footer .el-button:nth-child(1) {
+>>> .dialog-footer >>> .el-button:nth-child(1) {
   height: 40px;
   line-height: 1.499;
   display: inline-block;
@@ -151,16 +151,16 @@ export default {
   color: #fff!important;
   background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
 }
-.el-input__inner {
+>>> .el-input__inner {
   margin: 20px 0;
   border-top: none;
   border-left: none;
   border-right: none;
 }
-.el-dialog__header, .el-dialog__body {
+>>> .el-dialog__header, >>> .el-dialog__body {
   padding: 0;
 }
-.el-dialog {
+>>> .el-dialog {
   padding: 24px 80px;
   position: relative;
   background-color: #fff;
@@ -169,7 +169,7 @@ export default {
   background-clip: padding-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.el-table {
+>>> .el-table {
   font-size: 14px;
   color: #606266;
 }

@@ -161,7 +161,7 @@ export default {
       // 获取试题类型
       getQuestionsType: 'test_question_management/getQuestionsType',
       // 获取当前用户信息
-      getCurrentUserInformation: 'user/getCurrentUserInformation',
+      // getCurrentUserInformation: 'user/getCurrentUserInformation',
       // 添加试题接口
       questions: 'test_question_management/questions',
     })
@@ -174,7 +174,7 @@ export default {
     // 获取试题类型
     this.getQuestionsType()
     // 获取当前用户信息
-    this.getCurrentUserInformation()
+    // this.getCurrentUserInformation()
   }
 
 }

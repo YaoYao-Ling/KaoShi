@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, upAvatar } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -7,7 +7,7 @@ const state = {
     name: '',
     avatar: '',
     roles: [],
-    userList:[]    //用户数据
+    userList: [] //用户数据
 }
 
 const mutations = {
@@ -21,9 +21,9 @@ const mutations = {
         state.avatar = avatar
     },
     SET_ROLES: (state, roles) => {
-      state.roles = roles
+        state.roles = roles
     },
-    userStatsURI(state,payload) {
+    userStatsURI(state, payload) {
         state.userList = payload
     }
 }
@@ -68,8 +68,8 @@ const actions = {
             resolve()
             const roles = ['admin']
             commit('SET_ROLES', roles)
-            resolve({roles});
-            
+            resolve({ roles });
+
         })
     },
 
@@ -87,18 +87,25 @@ const actions = {
         })
     },
 
-  // remove token
-  resetToken({ commit }) {
-    return new Promise(resolve => {
-      commit('SET_TOKEN', '')
-      removeToken()
-      resolve()
-    })
-  },
-  // 获取用户数据
-  getUserList(state,payload){
-    
-  }
+    // remove token
+    resetToken({ commit }) {
+        return new Promise(resolve => {
+            commit('SET_TOKEN', '')
+            removeToken()
+            resolve()
+        })
+    },
+    // 获取用户数据
+    getUserList(state, payload) {
+
+    },
+    // 更新头像
+    async upAvatar({ commit }, payload) {
+        let res = await upAvatar(payload);
+        console.log(res);
+
+
+    }
 }
 
 export default {
