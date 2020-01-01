@@ -37,16 +37,6 @@
   :visible.sync="dialogVisible"
   width="40%"
   :before-close="handleClose">
-
-  <!-- <el-upload
-  class="avatar-uploader"
-  action="https://jsonplaceholder.typicode.com/posts/"
-  :show-file-list="false"
-  :on-success="handleAvatarSuccess"
-  :before-upload="beforeAvatarUpload">
-  <img v-if="imageUrl" :src="imageUrl" class="avatar">
-  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-</el-upload> -->
 <input type="file" @change="updataavatorfn">
 
   <span slot="footer" class="dialog-footer">
@@ -107,7 +97,7 @@ export default {
 
       axios({
         method: 'post',
-        url: 'http://123.206.55.50:11000/upload',
+        url: '//service.jasonandjay.com/upload',
         data: form
       }).then(res => {
         this.SET_AVATAR(res.data.data[0].path)
