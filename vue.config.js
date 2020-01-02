@@ -24,7 +24,7 @@ module.exports = {
      * In most cases please use '/' !!!
      * Detail: https://cli.vuejs.org/config/#publicpath
      */
-    publicPath: '/',
+    publicPath: '/1704B/dongwenkang/kaoshi',
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: process.env.NODE_ENV === 'development',
@@ -41,7 +41,7 @@ module.exports = {
             // detail: https://cli.vuejs.org/config/#devserver-proxy
             [process.env.VUE_APP_BASE_API]: {
                 // target: `http://127.0.0.1:${port}/mock`,
-                target: 'http://169.254.207.20:7002',
+                target: 'https://169.254.207.20:7002',
                 changeOrigin: true,
                 pathRewrite: {
                     ['^' + process.env.VUE_APP_BASE_API]: ''
