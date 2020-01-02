@@ -97,7 +97,7 @@ export default {
 
       axios({
         method: 'post',
-        url: '//service.jasonandjay.com/upload',
+        url: 'http://123.206.55.50:11000/upload',
         data: form
       }).then(res => {
         this.SET_AVATAR(res.data.data[0].path)
