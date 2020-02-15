@@ -1,0 +1,320 @@
+.sectionTitle {
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: .35rem;
+    height: 1rem;
+    line-height: 1rem;
+    background: url('https://mat1.gtimg.com/news/images/inews/2020/feiyan/18/img/smart.png') .4rem center no-repeat;
+    padding: 0 .7rem;
+    color: #005dff;
+    position: relative;
+}
+
+.healthIcon {
+    position: absolute;
+    right: .36rem;
+    top: .15rem;
+    width: 2.16rem;
+    height: .7rem;
+    background: url('https://puui.qpic.cn/vupload/0/1580302315181_7z5pmnq6q4c.png/0');
+    background-size: 100% 100%;
+}
+
+.hospital {
+    background: rgba(248, 248, 248, .3);
+}
+
+.hotelItemWrap {
+    // border-bottom: 1px solid #e9e9e9;
+    position: relative;
+    &::after {
+        position: absolute;
+        background: #e9e9e9;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        transform: scaleY(0.5);
+    }
+}
+
+.hotelProvince {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: .94rem;
+    background: #f8f8f8;
+    padding: 0 .46rem 0 .6rem;
+    height: .84rem;
+    background: #f8f8f8;
+    padding: 0 .46rem 0 .4rem;
+}
+
+.name {
+    height: .84rem;
+    line-height: .84rem;
+    font-size: .32rem;
+    color: #222;
+    text-align: center;
+    font-weight: 400;
+}
+
+.count {
+    position: relative;
+    height: 84px;
+    line-height: 84px;
+    font-size: 32px;
+    color: #222;
+    text-align: center;
+    font-weight: 500;
+    padding-right: 30px;
+    &:after {
+        content: '.';
+        display: block;
+        position: absolute;
+        font-size: 0;
+        line-height: 0;
+        width: 0;
+        height: 0;
+        border-width: 4px 4px 0 4px;
+        border-style: solid;
+        border-color: #737373 transparent transparent transparent;
+        right: 0px;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+}
+
+.activeCount {
+    composes: count;
+    &:after {
+        border-width: 0 4px 4px 4px;
+        border-color: transparent transparent #737373 transparent;
+    }
+}
+
+.box {
+    width: 100%;
+    padding: 0 20px;
+    .time {
+        line-height: 50px;
+        width: 100%;
+        span {
+            display: inline-block;
+            border: 3px solid blue;
+            border-radius: 50%;
+            background: #fff;
+            width: 10px;
+            height: 10px;
+            margin-right: 10px;
+        }
+    }
+    .cont {
+        width: 100%;
+        border-radius: 10px;
+        background: #fff;
+        padding: 10px 20px;
+        p {
+            margin: 10px 0;
+        }
+    }
+}
+
+.title {
+    color: blue;
+    height: 40px;
+    margin-top: 20px;
+    border-left: 5px solid blue;
+    margin-left: 20px;
+    padding: 0 20px 0 10px;
+    font-weight: normal;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+        height: 80%;
+        padding: 3px 10px;
+        border-radius: 15px;
+        &:first-child {
+            background: blue;
+            color: #fff;
+        }
+        &:last-child {
+            background: #fff;
+            color: blue;
+            border: 1px solid blue;
+        }
+    }
+}
+
+.city {
+    color: blue;
+}
+
+.new {
+    width: 100%;
+    background: #eef5ff;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    & div:nth-child(2) {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 20px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+        dl {
+            dt {
+                font-size: 20px;
+                font-weight: 700;
+            }
+            dd {
+                font-size: 14px;
+                color: #888;
+            }
+        }
+    }
+    & div:nth-child(3) {
+        padding: 0 20px;
+        p {
+            margin: 20px 0;
+            font-size: 16px;
+            padding-left: 20px;
+            position: relative;
+            span {
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #888;
+                width: 10px;
+                height: 10px;
+                background: #fff;
+                left: 0;
+                top: 6px;
+            }
+        }
+    }
+    & div:last-child {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 50px;
+        span {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid blue;
+            color: blue;
+            border-radius: 15px;
+            padding: 5px 10px;
+        }
+    }
+}
+
+.news {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.one {
+    color: blue;
+}
+
+.two {
+    color: red;
+}
+
+.three {
+    color: green;
+}
+
+.four {
+    color: #888;
+}
+
+.carea {
+    display: flex;
+    line-height: 50px;
+    span {
+        flex: 1;
+        text-align: center;
+        &:first-child,
+        &:nth-child(2) {
+            color: blue;
+        }
+    }
+}
+
+.careabox {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    line-height: 50px;
+    span {
+        flex: 1;
+        text-align: center;
+        &:first-child,
+        &:nth-child(2) {
+            color: blue;
+        }
+    }
+}
+
+.china,
+.chinap,
+.carea {
+    background: #fff;
+}
+
+.china {
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
+.chinap {
+    color: #888;
+    line-height: 40px;
+    padding: 0 10px;
+}
+
+.text {
+    color: #888;
+    line-height: 40px;
+    padding: 0 10px;
+    background: #fff;
+}
+
+.haiwai {
+    background: #fff;
+    line-height: 50px;
+    padding-left: 10px;
+}
+
+.hcarea {
+    display: flex;
+    line-height: 50px;
+    background: #fff;
+    span {
+        flex: 1;
+        text-align: center;
+        &:first-child {
+            font-weight: 600;
+        }
+    }
+}
+
+.hwbox {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    line-height: 50px;
+    span {
+        flex: 1;
+        text-align: center;
+        &:first-child {
+            color: blue;
+        }
+    }
+}
+
+.h3 {
+    padding: 0 20px;
+}
