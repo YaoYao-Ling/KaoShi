@@ -1,0 +1,12 @@
+.wrap view{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+text:first-child{
+  width: 300rpx;
+}
+text:last-child{
+  flex: 1;
+  text-align: center;
+}

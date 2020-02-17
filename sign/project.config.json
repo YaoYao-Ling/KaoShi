@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "ss",
 	"description": "一款精致的面试管理软件",
-	"appid": "wxa1a971389d97d981",
+	"appid": "touristappid",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
