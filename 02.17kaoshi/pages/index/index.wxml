@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="div">
+  <view class="tab">
+    <text wx:for="{{tab}}" bindtap="tab" class="{{index==curIndex?'active':''}}" wx:key="{{index}}" data-index="{{index}}">{{item}}        </text>
+  </view>
+  <view class="box">
+    <view class="h3">
+      <text>多彩周末体验计划</text>
+      <text>2/6</text>
+    </view>
+    <view class="p" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}">
+      <text>{{item.num}}</text>
+      <text>{{item.cont}}</text>
+      <text>√</text>
+    </view>
+  </view>
+  <navigator class="add" url="/pages/add/index">+</navigator>
+</view>

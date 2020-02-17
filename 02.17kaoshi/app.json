@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/guang/index",
+    "pages/message/index",
+    "pages/my/index",
+    "pages/add/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "gray",
+    "selectedColor": "red",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "清单"
+      },
+      {
+        "pagePath":"pages/guang/index",
+        "text": "广场"
+      },
+      {
+        "pagePath":"pages/message/index",
+        "text": "通知"
+      }
+      ,
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  }
+}
