@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="tab">
+        <input class="weui-input" placeholder="将会获取焦点"/>
+        <text class="btn">创建</text>
+        <text class="tabPush">批量导入</text>
+    </view>
+</view>

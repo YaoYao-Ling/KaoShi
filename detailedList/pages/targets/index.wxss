@@ -1,0 +1,31 @@
+/**index.wxss**/
+.container{
+  width: 100%;
+  height:100%;
+  box-sizing: border-box;
+  background-color: #ccc;
+}
+.container .tab{
+  width: 100%;
+  height:50px;
+  font-size: 14px;
+  color:#000;
+  background:#fff;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+input{
+  margin-top:12px;
+  border:solid 1px #ccc;
+}
+.btn{
+  font-weight: normal;
+  width: 30px;
+  border:solid 1px #ccc;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.tabPush{
+  font-size: ;
+}

@@ -1,0 +1,42 @@
+/**index.wxss**/
+.container{
+  width: 100%;
+  height:100%;
+  box-sizing: border-box;
+  background-color: #ccc;
+}
+.container .tab{
+  width: 100%;
+  height:50px;
+  color:#000;
+  background:#fff;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+.container .block{
+  flex:1;
+  height:100%;
+  font-size: 14px;
+  background:#fff;
+  margin:20px 15px;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+.blockTit{
+  
+  line-height: 30px;
+  
+}
+.blockText{
+  line-height: 30px;
+  
+  height:30px;
+  background:#eee;
+  margin:10px 10px;
+  padding: 10px ;
+  border-radius: 10px;
+}
+.blockTx{
+  padding-left: 15px;
+}

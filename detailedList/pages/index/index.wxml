@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="tab">
+        <text class="title" wx:for="{{list}}" wx:key="item">{{item}}</text>
+    </view>
+    <view class="block">
+        <view class="blockTit">多彩周末体验计划</view>
+        <view class="blockText" wx:for="{{content}}" wx:key="title">
+          <text class="blockNum">{{item.title}}</text>  
+          <text class="blockTx">{{item.text}}</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/targets/index",
+    "pages/habits/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "有爱清单"
+      },
+      {
+        "pagePath": "pages/targets/index",
+        "text": "添加目标"
+      },
+      {
+        "pagePath": "pages/habits/index",
+        "text": "添加习惯"
+      }
+    ]
+  }
+}
