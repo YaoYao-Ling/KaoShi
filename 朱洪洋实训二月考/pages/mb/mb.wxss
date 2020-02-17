@@ -1,0 +1,43 @@
+/* pages/mb/mb.wxss */
+
+.box{
+  width: 90%;
+  height: 500px;
+  background: #fff;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+.top{
+  width: 80%;
+  margin-left: 10%;
+  height: 40px;
+  line-height: 40px;
+  color: #777;
+  font-size: 13px;
+}
+.con text{
+  display: block;
+  width: 80%;
+  height: 45px;
+  border-radius: 8px;
+  margin-left: 10%;
+  background: #eee;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #666;
+  text-indent: 1em;
+}
+button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: 900px;
+  color: #666;
+  position: absolute;
+  top: 80%;
+  left: 47%;
+  line-height: 50px;
+  text-align: center;
+  
+}

@@ -1,0 +1,27 @@
+{
+  "pages":[
+    "pages/mb/mb",
+    "pages/xg/xg",
+    "pages/sj/sj",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "有爱清单",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "position":"top",
+    "list": [{
+        "pagePath": "pages/mb/mb",
+        "text": "目标"
+      },{
+      "pagePath": "pages/xg/xg",
+      "text": "习惯"
+    },{
+      "pagePath": "pages/sj/sj",
+      "text": "手记"
+    }]
+  }
+}

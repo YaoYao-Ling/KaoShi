@@ -1,0 +1,11 @@
+<!--pages/mb/mb.wxml-->
+<view class='box'>
+  <text class='top'>多彩周末体验计划</text>
+  <view class='con'>
+  <text wx:for="{{sj}}" wx:for_item='item'>
+    {{item}}
+  </text>
+    
+  </view>
+  <button>+</button>
+</view>
