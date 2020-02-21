@@ -14,3 +14,10 @@ text:last-child {
   flex: 1;
   height: 100%;
 }
+
+Button{
+  display: flex;
+  justify-content: space-between;
+  border:solid 1px #ccc;
+  border-radius: 10px;
+}

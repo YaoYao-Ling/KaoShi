@@ -1,0 +1,6 @@
+.wrap .top {
+  height: 80px;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-around;
+}
