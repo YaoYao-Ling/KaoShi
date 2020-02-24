@@ -77,7 +77,6 @@ class AddSign extends Component<PageState> {
   componentDidHide () { }
 
   formSubmit(e){
-    console.log('e...', this.state);
     this.props.submit({
       company: this.state.company,
       phone: this.state.phone,

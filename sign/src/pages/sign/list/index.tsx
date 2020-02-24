@@ -1,21 +1,21 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text, Input, Button, Form  } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { connect } from '@tarojs/redux'
 import {getSignListAction} from '../../../actions/sign'
+import { ITouchEvent } from '@tarojs/components/types/common'
+
 
 
 type PageStateProps = {
-  list:Array<{
-      [key:string]:any
+  list: Array<{
+    [key:string]: any
   }>
 }
-
 type PageDispatchProps = {
   getSignList: (params) => void
 }
-
 type PageOwnProps = {}
 
 type PageState = {
@@ -24,26 +24,26 @@ type PageState = {
   pageSize: number
 }
 
-type Iprops = PageStateProps & PageDispatchProps & PageOwnProps
+type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
 interface SignList {
-  props: Iprops;
+  props: IProps;
 }
 
+const headers = ['未开始','已开始','已放弃','全部']
 
-@connect(state => {
-    return {
-        list: state.sign.list
+@connect(state=>{
+  return {
+    list: state.sign.list
+  }
+}, dispatch=>{
+  return {
+    getSignList: (params)=>{
+      dispatch(getSignListAction(params))
     }
-}, dispatch => {
-    return {
-        getSignList: (params) => {
-            dispatch(getSignListAction(params))
-        }
-    }
+  }
 })
-
-class SignList extends Component<{},PageState> {
+class SignList extends Component<{}, PageState> {
   config: Config = {
     navigationBarTitleText: '面试列表'
   }
@@ -51,50 +51,49 @@ class SignList extends Component<{},PageState> {
   state={
     status: 2,
     page: 1,
-    pageSize: 10,
-    topTab:[
-      {
-        tab:'未开始',
-        id:1
-      },
-      {
-        tab:'已打卡',
-        id:1
-      },
-      {
-        tab:'已放弃',
-        id:1
-      },
-      {
-        tab:'全部',
-        id:1
-      }
-    ]
+    pageSize: 10
   }
 
   componentDidShow () {
-    let params = {...this.state};
-    console.log("signlist...",params);
-    if(params.status === 2){
-        delete params.status;
+    let {page, status, pageSize} = this.state;
+    let params = {page, status, pageSize};
+    if (params.status === 2){
+      delete params.status;
     }
     this.props.getSignList(params);
   }
 
   componentDidHide () { }
 
+  changeStatus = (e:ITouchEvent)=>{
+    this.setState({
+      status: e.target.dataset.status
+    })
+  }
+
+  goDetail = (e: ITouchEvent)=>{
+    wx.navigateTo({url:'/pages/sign/detail/index?id='+e.currentTarget.dataset.id});
+  }
 
   render () {
+    console.log('list...', this.props.list);
     return (
-        <View className='wrap'>
-          <View className='top'>
-            {
-              this.state.topTab.map((item:any,index:any)=>{
-                  return <Text key={index}>{item.tab}</Text>
-              })
-            }
-          </View>
-        </View>
+      <View className='wrap'>
+        <View className='header'>{
+          headers.map((item, index)=>{
+            return <Text key={index} data-status={index-1} className={index-1 == this.state.status?'active':''} onClick={this.changeStatus}>{item}</Text>
+          })
+        }</View>
+        <View className="list">{
+          this.props.list.map((item,index)=>{
+            return <View onClick={this.goDetail} data-id={item.id} key={index}>
+              <Text>{item.company}</Text>
+              <Text>{item.address}</Text>
+              {/* <Text>{new Date(item.start_time).toString()}</Text> */}
+            </View>
+          })
+        }</View>
+      </View>
     )
   }
 }

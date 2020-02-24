@@ -1,6 +1,27 @@
-.wrap .top {
-  height: 80px;
-  line-height: 80px;
+.header view {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header text {
+  flex: 1;
+  text-align: center;
+}
+
+.header text.active {
+  color: red;
+}
+
+.list view {
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 1px #ccc;
+  padding: 15px 20px;
 }

@@ -31,13 +31,25 @@ class App extends Component {
       'pages/map/index',
       'pages/sign/add/index',
       'pages/sign/location/index',
-      'pages/sign/list/index'
+      'pages/sign/list/index',
+      'pages/sign/detail/index'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    permission: {
+      "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+      }
+    },
+    plugins: {
+      "routePlan": {
+        "version": "1.0.5",
+        "provider": "wx50b5593e81dd937a"
+      }
     }
   }
 
@@ -47,12 +59,6 @@ class App extends Component {
     wx.login({
       async success (res) {
         if (res.code) {
-          //发起网络请求
-          // console.log('code...', res.code)
-          // store.dispatch({
-          //   type: 'LOGIN',
-          //   payload: res.code
-          // });
           let response = await login(res.code);
           console.log('res...', response);
           // 把openid存储到小程序的本地存储

@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
     address: {},
-    flag: -1,     //-1表示未提交表单，0表示提交失败，1表示提交成功
-    list:[]    //面试列表
+    list:[] ,   //面试列表
+    flag: -1     //-1表示未提交表单，0表示提交失败，1表示提交成功
 }
 
 export default function sign(state = INITIAL_STATE,action){
@@ -14,12 +14,12 @@ export default function sign(state = INITIAL_STATE,action){
         case 'SUBMIT_SIGN':
             return {
                 ...state,
-                list: action.payload
+                flag: action.payload
             }
         case 'SIGN_LIST':
             return {
                 ...state,
-                flag: action.payload
+                list: action.payload
             }
         default:
             return state
